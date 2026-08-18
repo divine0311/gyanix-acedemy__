@@ -1,0 +1,65 @@
+I have a half-built coaching institute website for "Gyanix Academy" already in this Replit project. 
+Do NOT rebuild the site from scratch or change the existing folder structure, routing, or design system. 
+Instead, integrate the following content into the EXISTING pages/components wherever they logically fit 
+(Home, About, Courses, Contact, etc.). If a section doesn't exist yet, create it as a new component 
+matching the existing design style.
+
+Use this data to update text content across the site:
+
+BRAND:
+- Name: Gyanix Academy
+- Tagline: "Lighting the way to excellence"
+- Established: 2025
+- Colors: Primary Navy Blue (#1B2A6B), Secondary Orange (#F5821F)
+
+ABOUT:
+Gyanix Academy is a School + Coaching + Hostel institute in Kaithal, Haryana, established in 2025, 
+offering competitive exam preparation and residential facilities for students from Class 5th to 12th.
+
+COURSES OFFERED (create/update a courses section with these as cards):
+1. IIT-JEE - Engineering entrance exam preparation
+2. NEET - Medical entrance exam preparation
+3. NDA - National Defence Academy exam preparation
+4. CUET - Common University Entrance Test preparation
+5. RMS - Rashtriya Military School entrance preparation
+6. Sainik School - Sainik School entrance exam preparation
+7. Boards - CBSE/State Board exam prep, Class 5th to 12th
+8. Olympiads - Olympiad exam training
+9. Foundation - Early foundation courses
+
+FACILITIES:
+- Residential Hostel Facility
+- Experienced Faculty
+- Regular Tests & Assessments
+- Small Batch Coaching
+- Safe & Secure Campus
+
+ACHIEVEMENTS SECTION (add if not present):
+Title: "Our Achievers"
+- Multiple students securing District Rank and State Rank in competitive exams
+- Featured in Amar Ujala newspaper for award ceremony
+- Organized road safety awareness program with local RTO officials, covered by Jagmarg News
+- Prize/cheque distribution events for top performers
+
+TESTIMONIALS/TRUST BADGES (add prominently on homepage):
+- Google Rating: 5.0 stars (59 reviews)
+- Justdial Rating: 5.0 stars (84 reviews), Claimed Business
+
+CONTACT INFO (update contact section/footer with this exact info):
+- Address: Gyanix Academy, Karnal Road, Street No. 4, Near New Bus Stand, Defence Colony, Kaithal, Haryana - 136027
+- Phone: 89501-75314, 89502-75314 (make these click-to-call links on mobile)
+- Email: gyanixacademy@gmail.com
+- Instagram: https://instagram.com/gyanix_academy
+- Facebook: https://facebook.com/GyanixAcademy
+- Add a floating WhatsApp button linking to: https://wa.me/918950175314
+- Add an embedded Google Map for this address
+
+IMAGE HANDLING:
+I will upload actual photos into an "assets/images" (or "public/images") folder. Please:
+1. Create an images folder in the correct path for this project's framework if it doesn't exist.
+2. Add a Gallery section (if not present) that displays images from that folder in a responsive grid.
+3. Use one of the uploaded images as the Hero section background/banner.
+4. Use uploaded achievement/award photos in the Achievements section as image cards next to each highlight.
+5. For any photo I haven't uploaded yet, use a clean placeholder (solid brand-color background, no random stock photos) so I can swap it in later.
+
+Keep the whole build mobile-responsive and don't break any existing working functionality.

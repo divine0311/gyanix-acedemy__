@@ -1,0 +1,58 @@
+I want to improve my Gyanix Academy website in 3 areas: course card images, 
+homepage design, and navbar/hero color scheme. Please do the following:
+
+1. COURSE CARD IMAGES (Courses section)
+- Currently my course cards (IIT-JEE, NEET, NDA & Defence, CUET, RMS & Sainik 
+  School, School Boards, etc.) have plain colored icon boxes at the top.
+- Replace these generic icon boxes with relevant, high-quality AI-generated 
+  images for each course:
+  - IIT-JEE: students solving math/physics problems, engineering theme
+  - NEET: medical/biology themed image, students with stethoscope or lab
+  - NDA & Defence: disciplined cadets, defence academy training visuals
+  - CUET: university campus, students with books
+  - RMS & Sainik School: young cadets in uniform, military school building
+  - School Boards: students studying with books, classroom setting
+- Keep the images in a consistent style (same lighting/tone, rounded corners 
+  matching the card design, 16:9 or square aspect ratio, subtle overlay if 
+  needed for text readability).
+- Make sure the image top + text bottom layout stays clean and card height 
+  remains consistent across all cards.
+
+2. NAVBAR COLOR & STYLE
+- Change navbar background from plain white to a very light off-white/gray 
+  (#FAFAFA) with a subtle bottom shadow for depth.
+- Make the active menu item (like "Courses") stand out clearly with the 
+  orange accent color and a small underline animation on hover for all menu 
+  items.
+- Keep "WhatsApp" button with green outline and "Enquire Now" button with 
+  the orange gradient — but add a subtle hover effect (slight scale-up + 
+  shadow) on both buttons.
+
+3. HERO SECTION COLOR COMBINATION
+- Keep the deep navy blue background but add a subtle gradient (navy blue 
+  to slightly lighter blue/indigo, top-to-bottom or diagonal) instead of 
+  flat navy, to give more depth.
+- Add a subtle background pattern or glow effect (soft blurred orange/blue 
+  circles in the background) behind the text for a modern tech feel — like 
+  popular ed-tech landing pages.
+- Make the "Book Free Demo Class" button pop more with a stronger orange 
+  gradient and glow/shadow effect on hover.
+- Make the "Explore Courses" outlined button have a smooth fill animation 
+  on hover (white fill with navy text).
+- Ensure the "5.0 Rated Institute in Kaithal" badge has a subtle glassmorphism 
+  effect (semi-transparent background with blur) to look more premium.
+
+4. HOMEPAGE OVERALL IMPROVEMENT
+- Add smooth fade-in/slide-up animations for each section as the user scrolls 
+  down (hero, courses, testimonials, stats, etc.).
+- Add a "Why Choose Us" or "Our Results" stats section right after hero with 
+  animated counters (e.g., "500+ Students Trained", "95% Success Rate", 
+  "10+ Years Experience") in cards with icons.
+- Ensure consistent spacing/padding between all sections (not too cramped, 
+  not too much white space).
+- Make sure everything is mobile responsive and looks equally good on phone 
+  screens.
+
+Please implement this using the existing tech stack of the project, keep 
+code clean and consistent with the current design system, and make sure 
+all pages remain consistent after these changes.

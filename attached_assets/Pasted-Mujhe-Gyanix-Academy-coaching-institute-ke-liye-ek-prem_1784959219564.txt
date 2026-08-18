@@ -1,0 +1,125 @@
+Mujhe "Gyanix Academy" coaching institute ke liye ek premium, dynamic, 
+multi-page website banani hai jo modern SaaS/EdTech startup jaisi lage 
+(basic template jaisi nahi honi chahiye).
+
+BUSINESS DETAILS:
+- Naam: Gyanix Academy
+- Tagline: "Your Path to IIT, NEET, NDA & Defence Success"
+- Address: Gali No 4, Near New Bus Stand, Main Road, Karnal Road, 
+  Defence Colony, Kaithal - 136027, Haryana
+- Established: 2025
+- Rating: 5.0 stars (84 Google/Justdial Ratings), Claimed Business
+- Timing: Open until 7:00 PM
+- Subjects Taught: Biology, Advanced Sciences
+- Exams Assisted: NDA, CUET, IIT-JEE, NEET, RMS, Sainik School, Olympiads
+- School Classes Assisted: 5th to 12th
+- Special Program: G-SET (Gyanix Scholarship Entrance Test) with up to 
+  100% scholarship
+- Contact: WhatsApp + Call button, Email enquiry option
+
+TECH STACK:
+- React + Tailwind CSS + Framer Motion (smooth animations ke liye)
+- React Router (multi-page navigation ke liye — SPA feel ke sath)
+- Fully responsive: mobile, tablet, desktop
+
+LOGO/BRANDING:
+- "Gyanix Academy" naam ko stylish tarike se likho: "Gyanix" bold navy 
+  blue font mein aur "ACADEMY" orange color mein chhote letter-spaced 
+  font mein, jaisa real logo mein hai (do rising figures ka icon bhi 
+  add karo logo ke sath, SVG icon se banao)
+- Ye branding style navbar, footer, aur hero section teeno jagah 
+  consistent honi chahiye
+
+NAVBAR (Sticky, dynamic hover effects ke sath):
+- Logo (left side)
+- Menu items: Home | About Us | Courses | G-SET Scholarship | Results | 
+  Gallery | Faculty | Contact
+- Right side: "Enquire Now" bright CTA button + phone icon
+- Mobile mein hamburger menu with smooth slide-in animation
+- Scroll karne par navbar background thoda change ho (glass/blur effect)
+
+HOME PAGE - HERO SECTION (Sabse important, premium banao):
+- Full-width hero with gradient background (navy blue to orange subtle 
+  gradient) ya AI-generated abstract education-themed background image
+- Left side: Bada headline "Your Path to IIT, NEET, NDA & Defence 
+  Success" + subheading about academy + 2 CTA buttons ("Book Free Demo 
+  Class", "Explore Courses")
+- Right side: AI-generated image of students studying/celebrating 
+  success (professional, bright, motivational style)
+- Neeche stats bar: "84+ Happy Students" | "5.0★ Rating" | "Est. 2025" | 
+  "8+ Exams Covered" — animated counter effect
+- Subtle floating shapes/particles animation in background for premium feel
+
+OTHER PAGES/SECTIONS (har ek alag route/page ki tarah banao):
+
+1. ABOUT US PAGE:
+   - Academy story, mission/vision
+   - AI-generated image: modern classroom/institute building
+   - Why Choose Us grid (Experienced Faculty, Small Batches, Test Series, 
+     Doubt Sessions, Result-Oriented)
+
+2. COURSES PAGE:
+   - Cards grid for: IIT-JEE, NEET, NDA, CUET, RMS, Sainik School, 
+     School Boards (5th-12th), Olympiads
+   - Har card mein icon, short description, "Know More" button
+   - Har course card ka apna hover animation (lift + shadow)
+
+3. G-SET SCHOLARSHIP PAGE (special section — isko highlight karo):
+   - "G-SET - Gyanix Scholarship Entrance Test" banner
+   - Scholarship up to 100% ki details, eligibility, kaise apply karein
+   - AI-generated image: trophy/scholarship celebration theme
+   - "District Topper" achievement highlight (jaisa asli banner mein hai)
+
+4. RESULTS/ACHIEVEMENTS PAGE:
+   - Success stories, selected students ke placeholder profiles
+   - Achievement banners jaisa "District Topper Anuj Saharan - 322/360"
+   - Stats counters
+
+5. GALLERY PAGE:
+   - Photo grid/masonry layout for: Road Safety Awareness Programme, 
+     Admission Open banners, classroom photos, events
+   - Lightbox effect on click (image bada hoke khule)
+   - Yaha AI-generated realistic images use karo: students in classroom, 
+     award ceremony, driver training safety event, teachers teaching
+
+6. FACULTY PAGE:
+   - Teacher profile cards with AI-generated professional headshot style 
+     images, name, subject, experience
+
+7. CONTACT PAGE:
+   - Address: Gali No 4, Near New Bus Stand, Main Road Karnal Road, 
+     Defence Colony, Kaithal - 136027, Haryana
+   - Embedded Google Map (iframe)
+   - Click-to-call aur WhatsApp direct buttons
+   - Enquiry form: Name, Phone, Course Interested In, Message
+   - "Open until 7:00 PM" live status badge
+
+FOOTER (sab pages mein common):
+- Logo + short tagline
+- Quick links (same as navbar)
+- Address, phone, email
+- Social media icons
+- WhatsApp floating action button (bottom-right, sabhi pages pe fixed)
+
+DESIGN GUIDELINES:
+- Color palette: Navy Blue (#1a3a8f jaisa), Orange (#f4841f jaisa), 
+  White background, halke gray sections
+- Rounded corners, soft shadows, modern card-based layouts
+- Scroll-triggered animations (fade-in, slide-up) har section pe
+- Har page ka apna relevant AI-generated hero image/banner ho — jaise 
+  Courses page pe study-related image, Results page pe achievement/
+  trophy-related image, Gallery pe real-event-style images
+- Typography: modern sans-serif (Poppins ya Inter font Google Fonts se)
+
+FUNCTIONALITY:
+- Working enquiry form (form submit hone par thank-you message dikhna 
+  chahiye)
+- Smooth page transitions (React Router ke sath fade/slide transition)
+- Mobile-first fully responsive design
+- Fast loading, clean code structure (components alag-alag folder mein)
+
+Please build step-by-step: pehle navbar + hero section perfect banao, 
+uske baad har page ek-ek karke add karo. Jaha real photo available nahi 
+hai wahan AI-generated relevant placeholder images (unsplash-style 
+professional education images) use karo taaki site turant professional 
+lage.
