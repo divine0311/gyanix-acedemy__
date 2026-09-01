@@ -91,8 +91,21 @@ const WELCOME: Message = {
 };
 
 // Browser speech recognition types
-type SpeechRecognitionType = typeof window extends { SpeechRecognition: infer T } ? T :
-  typeof window extends { webkitSpeechRecognition: infer T } ? T : never;
+interface SpeechRecognitionEventLike {
+  results: ArrayLike<ArrayLike<{ transcript: string }>>;
+}
+interface SpeechRecognitionLike {
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+  onstart: (() => void) | null;
+  onend: (() => void) | null;
+  onerror: (() => void) | null;
+  onresult: ((e: SpeechRecognitionEventLike) => void) | null;
+  start: () => void;
+  stop: () => void;
+}
+type SpeechRecognitionConstructor = new () => SpeechRecognitionLike;
 
 export function ChatBot() {
   const [open, setOpen] = useState(false);
@@ -105,7 +118,7 @@ export function ChatBot() {
 
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const recognitionRef = useRef<InstanceType<SpeechRecognitionType> | null>(null);
+  const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
 
   // Auto-scroll
   useEffect(() => {
@@ -169,13 +182,14 @@ export function ChatBot() {
   }, [loading, messages, open, speak]);
 
   const startListening = useCallback(() => {
-    const SR = (window as any).SpeechRecognition ?? (window as any).webkitSpeechRecognition;
+    const SR = (window as any).SpeechRecognition as SpeechRecognitionConstructor | undefined ??
+      (window as any).webkitSpeechRecognition as SpeechRecognitionConstructor | undefined;
     if (!SR) {
       alert("Aapka browser voice input support nahi karta. Please Chrome use karein.");
       return;
     }
 
-    const recognition = new SR() as any;
+    const recognition = new SR();
     recognitionRef.current = recognition;
     recognition.continuous = false;
     recognition.interimResults = false;
@@ -184,7 +198,7 @@ export function ChatBot() {
     recognition.onstart = () => setListening(true);
     recognition.onend = () => setListening(false);
     recognition.onerror = () => setListening(false);
-    recognition.onresult = (e: any) => {
+    recognition.onresult = (e: SpeechRecognitionEventLike) => {
       const transcript: string = e.results[0][0].transcript;
       setInput(transcript);
       sendMessage(transcript);
