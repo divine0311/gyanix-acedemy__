@@ -131,7 +131,7 @@ export default function Home() {
               </div>
               <AnimatedHeading
                 as="h1"
-                className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6"
+                className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6"
                 words={[
                   "Your", "Path", "to",
                   <span key="iit" className="text-amber-300">IIT,</span>,
@@ -145,8 +145,8 @@ export default function Home() {
               <p className="text-lg md:text-xl text-white/90 mb-8 max-w-lg">
                 Join Gyanix Academy and transform your potential into achievement. Expert faculty, rigorous testing, and unwavering support for ambitious students.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/contact">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/contact" className="sm:inline-flex">
                   <motion.button
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{
@@ -159,12 +159,12 @@ export default function Home() {
                       scale: { duration: 0.5, delay: 0.4, times: [0, 0.6, 1], ease: "easeOut" },
                       y: { duration: 1.6, delay: 0.9, repeat: Infinity, repeatDelay: 0.2, ease: "easeInOut" },
                     }}
-                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-white bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 shadow-lg shadow-orange-950/40 hover:shadow-xl hover:shadow-orange-950/60 transition-all duration-300 active:scale-95 text-base border border-orange-300/30"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-bold text-white bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 shadow-lg shadow-orange-950/40 hover:shadow-xl hover:shadow-orange-950/60 transition-all duration-300 active:scale-95 text-base w-full sm:w-auto border border-orange-300/30"
                   >
                     Book Free Demo Class
                   </motion.button>
                 </Link>
-                <Link href="/courses">
+                <Link href="/courses" className="sm:inline-flex">
                   <motion.button
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{
@@ -177,7 +177,7 @@ export default function Home() {
                       scale: { duration: 0.5, delay: 0.8, times: [0, 0.6, 1], ease: "easeOut" },
                       y: { duration: 1.6, delay: 1.3, repeat: Infinity, repeatDelay: 0.2, ease: "easeInOut" },
                     }}
-                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-white bg-orange-600/90 hover:bg-orange-600 border-2 border-orange-400 hover:border-orange-300 shadow-md shadow-orange-950/30 transition-all duration-300 active:scale-95 text-base"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-bold text-white bg-orange-600/90 hover:bg-orange-600 border-2 border-orange-400 hover:border-orange-300 shadow-md shadow-orange-950/30 transition-all duration-300 active:scale-95 text-base w-full sm:w-auto"
                   >
                     Explore Courses
                   </motion.button>
@@ -224,14 +224,14 @@ export default function Home() {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.8 }}
-                className="absolute -bottom-6 -left-6 bg-indigo-100 border-2 border-indigo-300 p-4 rounded-xl shadow-xl flex items-center gap-4"
+                className="absolute -bottom-6 -left-6 sm:left-auto sm:-right-3 bg-indigo-100 border-2 border-indigo-300 p-2 sm:p-4 rounded-xl shadow-xl flex items-center gap-2 sm:gap-4"
               >
-                <div className="w-12 h-12 bg-indigo-200 rounded-full flex items-center justify-center text-indigo-800">
-                  <Trophy className="w-6 h-6" />
+                <div className="w-8 h-8 sm:w-12 sm:h-12 bg-indigo-200 rounded-full flex items-center justify-center text-indigo-800 shrink-0">
+                  <Trophy className="w-4 h-4 sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-indigo-950">100%</div>
-                  <div className="text-sm text-indigo-800 font-medium">Results Driven</div>
+                  <div className="text-base sm:text-2xl font-bold text-indigo-950">100%</div>
+                  <div className="text-[10px] sm:text-sm text-indigo-800 font-medium">Results Driven</div>
                 </div>
               </motion.div>
             </motion.div>

@@ -1,0 +1,15 @@
+{
+  "buildCommand": "pnpm install && PORT=3000 BASE_PATH=/ pnpm --filter @workspace/gyanix-academy run build",
+  "outputDirectory": "artifacts/gyanix-academy/dist/public",
+  "installCommand": "pnpm install",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://gyanix-acedemy.onrender.com/api/:path*"
+    },
+    {
+      "source": "/((?!assets/).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

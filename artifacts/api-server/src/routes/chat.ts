@@ -175,13 +175,13 @@ router.post("/chat", async (req, res) => {
       .filter((m) => m.role === "user" || m.role === "assistant");
 
     const completion = await client.chat.completions.create({
-      model: "llama-3.3-70b-versatile",
+      model: "openai/gpt-oss-120b",
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         ...safeHistory,
         { role: "user", content: message },
       ],
-      max_tokens: 400,
+      max_tokens: 1000,
       temperature: 0.6,
     });
 

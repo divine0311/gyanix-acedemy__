@@ -70,7 +70,7 @@
 ### AI
 | Layer | Technology | Details |
 |---|---|---|
-| Chatbot LLM | Groq SDK | `llama-3.3-70b-versatile` via Groq API |
+| Chatbot LLM | Groq SDK | `openai/gpt-oss-120b` via Groq API |
 
 ### Database (Configured, Not Actively Used)
 | Layer | Technology | Version |
@@ -183,7 +183,7 @@ workspace/                              ← pnpm monorepo root
 |---|---|
 | **Provider** | [Groq](https://groq.com) |
 | **SDK** | `groq-sdk` ^1.5.0 |
-| **Model Used** | `llama-3.3-70b-versatile` |
+| **Model Used** | `openai/gpt-oss-120b` |
 | **Feature** | Academy Assistant chatbot (floating widget on all pages) |
 | **Route** | `POST /api/chat` |
 | **Context Window** | Last 8 conversation exchanges retained |
@@ -244,7 +244,7 @@ All secrets are managed via **Replit Secrets** (never hardcoded or in `.env` com
 
 ### AI Chatbot
 - Floating chat bubble (bottom-right) on all pages
-- Powered by Groq `llama-3.3-70b-versatile`
+- Powered by Groq `openai/gpt-oss-120b`
 - Full academy knowledge baked into system prompt
 - Responds in Hindi, English, or Hinglish
 - Conversation history retained (last 8 exchanges)
@@ -448,7 +448,7 @@ All routes are mounted under the `/api` base path.
 
 **Behavior:**
 - Retains last 8 conversation exchanges from `history` for context
-- Model: `llama-3.3-70b-versatile` (max_tokens: 400, temperature: 0.6)
+- Model: `openai/gpt-oss-120b` (max_tokens: 400, temperature: 0.6)
 - System prompt includes full academy knowledge (courses, faculty, contact, G-SET, etc.)
 
 ---

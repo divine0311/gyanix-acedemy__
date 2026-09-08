@@ -77,14 +77,14 @@ export default function Scholarship() {
                 className="rounded-[2rem] shadow-2xl relative z-10 w-full object-cover border-4 border-white/10 aspect-square md:aspect-[4/3]"
               />
               
-              <div className="absolute -bottom-8 -left-8 bg-white text-gray-900 p-6 rounded-2xl shadow-xl z-20 flex items-center gap-4">
-                <div className="w-14 h-14 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center">
-                  <Star className="w-8 h-8 fill-yellow-600" />
+              <div className="absolute -bottom-6 -left-2 sm:-bottom-8 sm:-left-8 bg-white text-gray-900 p-3 sm:p-6 rounded-2xl shadow-xl z-20 flex items-center gap-2 sm:gap-4 max-w-[240px] sm:max-w-none">
+                <div className="w-10 h-10 sm:w-14 sm:h-14 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center shrink-0">
+                  <Star className="w-5 h-5 sm:w-8 sm:h-8 fill-yellow-600" />
                 </div>
-                <div>
-                  <div className="text-sm font-bold text-gray-500 uppercase tracking-wide">District Topper</div>
-                  <div className="text-xl font-extrabold">Anuj Saharan</div>
-                  <div className="text-sm text-secondary font-bold">100% Fee Waived</div>
+                <div className="min-w-0">
+                  <div className="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide whitespace-nowrap overflow-hidden text-ellipsis">District Topper</div>
+                  <div className="text-sm sm:text-xl font-extrabold">Anuj Saharan</div>
+                  <div className="text-[11px] sm:text-sm text-secondary font-bold">100% Fee Waived</div>
                 </div>
               </div>
             </motion.div>

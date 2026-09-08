@@ -79,12 +79,12 @@ export default function Results() {
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-100 text-yellow-700 font-bold text-sm mb-6 uppercase tracking-wider">
                   <Star className="w-4 h-4 fill-yellow-700" /> District Topper 2025
                 </div>
-                <h2 className="text-4xl font-extrabold text-gray-900 mb-2">Anuj Saharan</h2>
-                <div className="text-3xl font-black text-primary mb-6">322<span className="text-xl text-gray-500">/360</span></div>
-                <p className="text-gray-600 text-lg mb-8">
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">Anuj Saharan</h2>
+                <div className="text-2xl sm:text-3xl font-black text-primary mb-6">322<span className="text-lg sm:text-xl text-gray-500">/360</span></div>
+                <p className="text-gray-600 text-base sm:text-lg mb-8">
                   "Gyanix Academy's test series and personalized doubt sessions were the game changer for my JEE preparation."
                 </p>
-                <div className="flex gap-4">
+                <div className="flex flex-wrap gap-4">
                   <div className="bg-gray-100 px-4 py-2 rounded-lg text-sm font-bold text-gray-700">JEE Mains</div>
                   <div className="bg-gray-100 px-4 py-2 rounded-lg text-sm font-bold text-gray-700">100%ile in Math</div>
                 </div>

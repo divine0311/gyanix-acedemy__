@@ -229,8 +229,8 @@ export function ChatBot() {
           whileTap={{ scale: 0.95 }}
           className={`relative flex items-center justify-center transition-all outline-none group ${
             open
-              ? "w-14 h-14 rounded-full bg-white shadow-xl border-2 border-blue-400 z-50"
-              : "w-[85px] h-[85px] bg-transparent z-50 hover:-translate-y-2 drop-shadow-[0_15px_25px_rgba(59,130,246,0.35)]"
+              ? "w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white shadow-xl border-2 border-blue-400 z-50"
+              : "w-16 h-16 sm:w-[85px] sm:h-[85px] bg-transparent z-50 hover:-translate-y-2 drop-shadow-[0_15px_25px_rgba(59,130,246,0.35)]"
           }`}
           aria-label="Open chat"
         >
@@ -272,8 +272,8 @@ export function ChatBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 left-4 sm:left-6 z-50 w-[340px] sm:w-[380px] flex flex-col rounded-2xl shadow-2xl overflow-hidden border border-gray-100 bg-white"
-            style={{ maxHeight: "520px" }}
+            className="fixed bottom-20 left-2 right-2 sm:left-6 sm:right-auto z-50 w-auto sm:w-[380px] flex flex-col rounded-2xl shadow-2xl overflow-hidden border border-gray-100 bg-white"
+            style={{ maxHeight: "calc(100dvh - 120px)" }}
           >
             {/* Header */}
             <div className="bg-primary px-4 py-3 flex items-center gap-3">
