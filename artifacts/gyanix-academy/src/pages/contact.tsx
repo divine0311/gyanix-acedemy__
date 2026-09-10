@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone } from "lucide-react";
+import { Seo, organizationJsonLd, websiteJsonLd } from "@/components/seo";
 
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -46,6 +47,13 @@ export default function Contact() {
 
   return (
     <div className="w-full bg-gray-50 min-h-screen">
+      <Seo
+        title="Contact Gyanix Academy – Coaching Institute Kaithal | Call 89501-75314"
+        description="Contact Gyanix Academy in Defence Colony, Kaithal. Call 89501-75314 / 89502-75314, WhatsApp us, or send an enquiry. Open Mon–Sat 9 AM to 7 PM."
+        path="/contact"
+        type="website"
+        jsonLd={[organizationJsonLd, websiteJsonLd]}
+      />
       {/* Header */}
       <section className="bg-primary py-16 text-center text-white">
         <div className="container mx-auto px-4 md:px-6">
@@ -160,10 +168,11 @@ export default function Contact() {
                   >
                     {/* Row 1: Name */}
                     <div className="space-y-1.5">
-                      <label className="text-sm font-medium text-gray-900">
+                      <label htmlFor="contact-name" className="text-sm font-medium text-gray-900">
                         Full Name <span className="text-red-500">*</span>
                       </label>
                       <Input
+                        id="contact-name"
                         name="name"
                         required
                         placeholder="Enter your full name"
@@ -175,10 +184,11 @@ export default function Contact() {
                     {/* Row 2: Email + Course */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div className="space-y-1.5">
-                        <label className="text-sm font-medium text-gray-900">
+                        <label htmlFor="contact-email" className="text-sm font-medium text-gray-900">
                           Email Address <span className="text-red-500">*</span>
                         </label>
                         <Input
+                          id="contact-email"
                           name="email"
                           required
                           type="email"
@@ -188,10 +198,11 @@ export default function Contact() {
                         />
                       </div>
                       <div className="space-y-1.5">
-                        <label className="text-sm font-medium text-gray-900">
+                        <label htmlFor="contact-course" className="text-sm font-medium text-gray-900">
                           Course Interested In <span className="text-red-500">*</span>
                         </label>
                         <select
+                          id="contact-course"
                           name="course"
                           required
                           defaultValue=""
@@ -215,10 +226,11 @@ export default function Contact() {
 
                     {/* Message */}
                     <div className="space-y-1.5">
-                      <label className="text-sm font-medium text-gray-900">
+                      <label htmlFor="contact-message" className="text-sm font-medium text-gray-900">
                         Message <span className="text-red-500">*</span>
                       </label>
                       <Textarea
+                        id="contact-message"
                         name="message"
                         required
                         placeholder="Tell us about your goals, current class, or any questions you have…"

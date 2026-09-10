@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { BookOpen, Star, Users, Trophy, ChevronRight, Award, CheckCircle } from "lucide-react";
+import { Seo, organizationJsonLd, websiteJsonLd } from "@/components/seo";
 import homeHeroImg from "@assets/generated_images/home-hero.jpg";
 import homeHeroImg2 from "@assets/generated_images/home-hero-2.jpg";
 import homeHeroImg3 from "@assets/generated_images/home-hero-3.jpg";
@@ -99,8 +100,53 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Which competitive exams does Gyanix Academy prepare students for?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Gyanix Academy offers coaching for IIT-JEE (Mains & Advanced), NEET, NDA & Defence, CUET, RMS & Sainik School, School Boards (5th–12th), Olympiads and Pre-Foundation in Kaithal, Haryana.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Where is Gyanix Academy located?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Gyanix Academy is located at Karnal Road, Street No. 4, Near New Bus Stand, Defence Colony, Kaithal, Haryana – 136027. It offers a complete School · Coaching · Hostel campus.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does Gyanix Academy offer scholarships?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Gyanix Academy runs the G-SET (Gyanix Scholarship Entrance Test) which lets students earn up to 100% tuition fee waiver based on their performance.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does Gyanix Academy provide hostel facilities?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, Gyanix Academy provides a safe, comfortable residential hostel on campus with a secure and monitored environment for focused learning.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="w-full">
+      <Seo
+        title="Gyanix Academy – Best Coaching Institute in Kaithal for IIT-JEE, NEET, NDA"
+        description="Gyanix Academy is Kaithal's top-rated coaching institute for IIT-JEE, NEET, NDA, CUET, RMS & Sainik School. Expert faculty, residential hostel, 5★ rated. Enrol now."
+        path="/"
+        jsonLd={[organizationJsonLd, websiteJsonLd, faqJsonLd]}
+      />
       {/* HERO SECTION */}
       <section
         className="relative overflow-hidden py-20 lg:py-32"
@@ -358,6 +404,11 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+          <div className="text-center mt-12">
+            <Link href="/results" className="inline-flex items-center gap-2 text-primary font-bold hover:text-secondary transition-colors">
+              Explore our full Hall of Fame results <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -440,6 +491,11 @@ export default function Home() {
                 <p className="text-sm text-gray-700 font-medium leading-relaxed">{f.desc}</p>
               </motion.div>
             ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link href="/faculty" className="inline-flex items-center gap-2 text-primary font-bold hover:text-secondary transition-colors">
+              Meet our IIT, NEET & NDA expert faculty <ChevronRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>

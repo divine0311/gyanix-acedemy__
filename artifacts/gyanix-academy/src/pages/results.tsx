@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { Trophy, Star, TrendingUp, Medal } from "lucide-react";
+import { Seo, organizationJsonLd } from "@/components/seo";
 import resultsImg from "@assets/generated_images/results-hero.jpg";
 
 function Counter({ end, suffix = "" }: { end: number, suffix?: string }) {
@@ -37,6 +38,13 @@ export default function Results() {
 
   return (
     <div className="w-full">
+      <Seo
+        title="Results & Achievements – Gyanix Academy Toppers in Kaithal"
+        description="See Gyanix Academy's proven results: District & State rankers in JEE, NEET and NDA, a 95% success rate and 100% board pass rate. Join the Hall of Fame."
+        path="/results"
+        type="website"
+        jsonLd={organizationJsonLd}
+      />
       {/* Hero */}
       <section className="bg-primary/5 py-16 md:py-24 border-b border-primary/10">
         <div className="container mx-auto px-4 md:px-6 text-center">
@@ -90,7 +98,7 @@ export default function Results() {
                 </div>
               </div>
               <div className="relative min-h-[300px]">
-                <img src={resultsImg} alt="Topper Celebration" className="absolute inset-0 w-full h-full object-cover" />
+                <img src={resultsImg} alt="Gyanix Academy JEE topper Anuj Saharan celebrating success" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-r from-white via-white/20 to-transparent md:block hidden"></div>
               </div>
             </div>

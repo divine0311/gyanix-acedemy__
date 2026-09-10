@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Linkedin, Twitter, Mail } from "lucide-react";
+import { Seo, organizationJsonLd } from "@/components/seo";
 
 import fac1 from "@assets/generated_images/faculty-1.jpg";
 import fac2 from "@assets/generated_images/faculty-2.jpg";
@@ -40,6 +41,29 @@ export default function Faculty() {
 
   return (
     <div className="w-full bg-white">
+      <Seo
+        title="Faculty at Gyanix Academy – Expert IIT-JEE, NEET & NDA Teachers in Kaithal"
+        description="Meet the expert faculty at Gyanix Academy Kaithal — experienced IIT-JEE, NEET, NDA and CUET educators dedicated to your competitive exam success."
+        path="/faculty"
+        type="website"
+        jsonLd={[
+          organizationJsonLd,
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "Gyanix Academy Faculty",
+            itemListElement: faculty.map((m, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              item: {
+                "@type": "Person",
+                name: m.name,
+                jobTitle: `${m.subject} Faculty`,
+              },
+            })),
+          },
+        ]}
+      />
       {/* Header */}
       <section className="bg-primary py-20 text-white text-center">
         <div className="container mx-auto px-4 md:px-6">
@@ -75,7 +99,7 @@ export default function Faculty() {
                 className="group"
               >
                 <div className="relative rounded-2xl overflow-hidden mb-6 aspect-[4/5] shadow-lg">
-                  <img src={member.img} alt={member.name} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
+                  <img src={member.img} alt={`${member.name}, ${member.subject} faculty at Gyanix Academy`} loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6">
                     <div className="flex gap-4">
                       <a href="#" className="w-10 h-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-secondary hover:text-white transition-colors">
@@ -91,7 +115,7 @@ export default function Faculty() {
                   </div>
                 </div>
                 <div className="text-center px-4">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-1">{member.name}</h3>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-1">{member.name}</h2>
                   <p className="text-secondary font-bold text-sm mb-3 uppercase tracking-wider">{member.subject}</p>
                   <span className="inline-block bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full mb-4">
                     {member.exp}

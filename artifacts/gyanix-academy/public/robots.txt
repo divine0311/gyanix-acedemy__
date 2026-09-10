@@ -1,2 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /admin
+Disallow: /*?*
+
+Sitemap: https://gyanixacademy.com/sitemap.xml

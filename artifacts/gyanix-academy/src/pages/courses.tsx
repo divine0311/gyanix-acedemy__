@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Calculator, Stethoscope, Shield, GraduationCap, School, BookOpen, BrainCircuit, Microscope } from "lucide-react";
+import { Calculator, Stethoscope, Shield, GraduationCap, School, BookOpen, BrainCircuit, Microscope, ChevronRight } from "lucide-react";
+import { Seo, organizationJsonLd } from "@/components/seo";
 import coursesImg from "@assets/generated_images/courses-hero.jpg";
 import imgIitJee from "@assets/generated_images/course-iit-jee.jpg";
 import imgNeet from "@assets/generated_images/course-neet.jpg";
@@ -98,10 +99,30 @@ export default function Courses() {
 
   return (
     <div className="w-full">
+      <Seo
+        title="Courses at Gyanix Academy – IIT-JEE, NEET, NDA, CUET Coaching in Kaithal"
+        description="Explore Gyanix Academy's coaching programs in Kaithal: IIT-JEE, NEET, NDA & Defence, CUET, RMS & Sainik School, School Boards, Olympiads and Pre-Foundation."
+        path="/courses"
+        type="website"
+        jsonLd={[
+          organizationJsonLd,
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "Gyanix Academy Courses",
+            itemListElement: courses.map((c, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              name: c.title,
+              description: c.desc,
+            })),
+          },
+        ]}
+      />
       {/* Hero */}
       <section className="relative py-20 bg-gray-900 overflow-hidden">
         <div className="absolute inset-0 opacity-40">
-          <img src={coursesImg} alt="Students studying" className="w-full h-full object-cover" />
+          <img src={coursesImg} alt="" aria-hidden="true" loading="lazy" decoding="async" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent"></div>
         </div>
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -142,7 +163,9 @@ export default function Courses() {
                 <div className="relative overflow-hidden h-48 shrink-0">
                   <img
                     src={course.image}
-                    alt={course.title}
+                    alt={`${course.title} coaching at Gyanix Academy Kaithal`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
@@ -154,9 +177,8 @@ export default function Courses() {
 
                 {/* Content */}
                 <div className="p-7 flex-1 flex flex-col">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{course.title}</h3>
+                  <h2 className="text-xl font-bold text-gray-900 mb-3">{course.title}</h2>
                   <p className="text-gray-700 font-medium mb-5 line-clamp-2 flex-1">{course.desc}</p>
-
                   <ul className="space-y-2 mb-6">
                     {course.features.map((feature, idx) => (
                       <li key={idx} className="flex items-center text-sm font-semibold text-gray-800">
@@ -179,6 +201,12 @@ export default function Courses() {
                 </div>
               </motion.div>
             ))}
+          </div>
+          <div className="text-center mt-14">
+            <p className="text-gray-600 mb-4">Taught by our expert IIT, NEET &amp; NDA educators in Kaithal.</p>
+            <Link href="/faculty" className="inline-flex items-center gap-2 text-primary font-bold hover:text-secondary transition-colors">
+              Browse our faculty profiles <ChevronRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>

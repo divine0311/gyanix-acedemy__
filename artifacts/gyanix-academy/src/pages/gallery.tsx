@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn } from "lucide-react";
+import { Seo, organizationJsonLd } from "@/components/seo";
 
 import gal1 from "@assets/generated_images/gallery-1.jpg";
 import gal2 from "@assets/generated_images/gallery-2.jpg";
@@ -13,16 +14,23 @@ export default function Gallery() {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
 
   const images = [
-    { src: gal1, alt: "Road safety awareness programme" },
-    { src: gal2, alt: "Admission open banner ceremony" },
-    { src: gal3, alt: "Students in classroom attentively studying" },
-    { src: gal4, alt: "Students receiving certificates" },
-    { src: gal5, alt: "Students smiling outdoors" },
-    { src: gal6, alt: "Teacher explaining concepts" },
+    { src: gal1, alt: "Road safety awareness programme organised by Gyanix Academy" },
+    { src: gal2, alt: "Admissions open banner ceremony at Gyanix Academy" },
+    { src: gal3, alt: "Students attentively studying in a Gyanix Academy classroom" },
+    { src: gal4, alt: "Gyanix Academy students receiving achievement certificates" },
+    { src: gal5, alt: "Gyanix Academy students smiling together outdoors" },
+    { src: gal6, alt: "Teacher explaining concepts to students at Gyanix Academy" },
   ];
 
   return (
     <div className="w-full min-h-screen bg-gray-50 py-16 md:py-24">
+      <Seo
+        title="Photo Gallery – Life at Gyanix Academy Kaithal"
+        description="Browse the Gyanix Academy photo gallery — classrooms, events, award ceremonies and the vibrant learning environment at our coaching institute in Kaithal."
+        path="/gallery"
+        type="website"
+        jsonLd={organizationJsonLd}
+      />
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
           <motion.h1 
@@ -53,7 +61,7 @@ export default function Gallery() {
               className="relative rounded-2xl overflow-hidden cursor-pointer group break-inside-avoid"
               onClick={() => setSelectedImg(img.src)}
             >
-              <img src={img.src} alt={img.alt} className="w-full h-auto transform group-hover:scale-105 transition-transform duration-500" />
+              <img src={img.src} alt={img.alt} loading="lazy" decoding="async" className="w-full h-auto transform group-hover:scale-105 transition-transform duration-500" />
               <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-white p-4 text-center">
                 <ZoomIn className="w-8 h-8 mb-2" />
                 <span className="font-medium">{img.alt}</span>

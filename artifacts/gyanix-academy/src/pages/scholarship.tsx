@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Trophy, CheckCircle, Percent, ArrowRight, Star, CheckCircle2, AlertCircle } from "lucide-react";
+import { Seo, organizationJsonLd } from "@/components/seo";
 import scholarshipImg from "@assets/generated_images/scholarship-hero.jpg";
 
 export default function Scholarship() {
@@ -42,6 +43,37 @@ export default function Scholarship() {
 
   return (
     <div className="w-full">
+      <Seo
+        title="G-SET Scholarship – Up to 100% Fee Waiver | Gyanix Academy Kaithal"
+        description="Apply for the Gyanix Scholarship Entrance Test (G-SET) at Gyanix Academy Kaithal and secure up to 100% tuition fee waiver for IIT-JEE, NEET and NDA batches. Free to register."
+        path="/scholarship"
+        type="website"
+        jsonLd={[
+          organizationJsonLd,
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "What is the G-SET scholarship?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "G-SET (Gyanix Scholarship Entrance Test) is Gyanix Academy's entrance exam that lets students earn up to 100% tuition fee waiver based on their performance.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Is G-SET registration free?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, registration for the G-SET scholarship test at Gyanix Academy is completely free.",
+                },
+              },
+            ],
+          },
+        ]}
+      />
       {/* Hero */}
       <section className="bg-primary text-white py-20 border-b-8 border-secondary">
         <div className="container mx-auto px-4 md:px-6">
@@ -73,7 +105,9 @@ export default function Scholarship() {
               <div className="absolute inset-0 bg-secondary rounded-[2rem] transform rotate-6 scale-105 opacity-20"></div>
               <img 
                 src={scholarshipImg} 
-                alt="Scholarship Celebration" 
+                alt="Gyanix Academy G-SET scholarship celebration"
+                loading="lazy"
+                decoding="async"
                 className="rounded-[2rem] shadow-2xl relative z-10 w-full object-cover border-4 border-white/10 aspect-square md:aspect-[4/3]"
               />
               
@@ -177,17 +211,17 @@ export default function Scholarship() {
                     >
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-gray-900">Student Name <span className="text-red-500">*</span></label>
-                          <Input name="name" required placeholder="Enter your name" className="bg-gray-50 h-12" disabled={status === "loading"} />
+                          <label htmlFor="gset-name" className="text-sm font-medium text-gray-900">Student Name <span className="text-red-500">*</span></label>
+                          <Input id="gset-name" name="name" required placeholder="Enter your name" className="bg-gray-50 h-12" disabled={status === "loading"} />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-gray-900">Email Address <span className="text-red-500">*</span></label>
-                          <Input name="email" required type="email" placeholder="Enter your email" className="bg-gray-50 h-12" disabled={status === "loading"} />
+                          <label htmlFor="gset-email" className="text-sm font-medium text-gray-900">Email Address <span className="text-red-500">*</span></label>
+                          <Input id="gset-email" name="email" required type="email" placeholder="Enter your email" className="bg-gray-50 h-12" disabled={status === "loading"} />
                         </div>
                       </div>
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-900">Current Class <span className="text-red-500">*</span></label>
-                        <select name="currentClass" required defaultValue="" disabled={status === "loading"} className="flex h-12 w-full rounded-md border border-input bg-gray-50 px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50">
+                        <label htmlFor="gset-class" className="text-sm font-medium text-gray-900">Current Class <span className="text-red-500">*</span></label>
+                        <select id="gset-class" name="currentClass" required defaultValue="" disabled={status === "loading"} className="flex h-12 w-full rounded-md border border-input bg-gray-50 px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50">
                           <option value="" disabled>Select Class</option>
                           <option value="Class 5">Class 5</option>
                           <option value="Class 6">Class 6</option>
@@ -201,8 +235,8 @@ export default function Scholarship() {
                         </select>
                       </div>
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-900">Target Exam <span className="text-red-500">*</span></label>
-                        <select name="targetExam" required defaultValue="" disabled={status === "loading"} className="flex h-12 w-full rounded-md border border-input bg-gray-50 px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50">
+                        <label htmlFor="gset-exam" className="text-sm font-medium text-gray-900">Target Exam <span className="text-red-500">*</span></label>
+                        <select id="gset-exam" name="targetExam" required defaultValue="" disabled={status === "loading"} className="flex h-12 w-full rounded-md border border-input bg-gray-50 px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50">
                           <option value="" disabled>Select Exam</option>
                           <option value="IIT-JEE">IIT-JEE</option>
                           <option value="NEET">NEET</option>

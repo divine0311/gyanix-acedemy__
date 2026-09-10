@@ -163,8 +163,19 @@ export function ChatBot() {
         body: JSON.stringify({ message: trimmed, history }),
       });
 
-      const data = await res.json() as { reply?: string; error?: string };
-      const reply = data.reply ?? data.error ?? "Kuch error aa gayi. Dobara try karo.";
+      const data = await res.json().catch(() => ({})) as {
+        reply?: string;
+        error?: string;
+      };
+
+      let reply: string;
+      if (!res.ok) {
+        reply =
+          data.error ??
+          "Kuch error aa gayi. Dobara try karo.";
+      } else {
+        reply = data.reply ?? "Kuch error aa gayi. Dobara try karo.";
+      }
       const botMsg: Message = { role: "assistant", content: reply };
 
       setMessages((prev) => [...prev, botMsg]);

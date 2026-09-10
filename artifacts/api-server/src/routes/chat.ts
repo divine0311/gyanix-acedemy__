@@ -4,6 +4,8 @@ import { logger } from "../lib/logger";
 
 const router: IRouter = Router();
 
+const MAX_MESSAGE_LENGTH = 1000;
+
 const SYSTEM_PROMPT = `You are a friendly and helpful assistant for Gyanix Academy, a premium coaching institute in Kaithal, Haryana, India. You know everything about this academy and help students, parents, and visitors with their questions.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -158,6 +160,13 @@ router.post("/chat", async (req, res) => {
 
   if (!message?.trim()) {
     res.status(400).json({ error: "Message is required." });
+    return;
+  }
+
+  if (message.trim().length > MAX_MESSAGE_LENGTH) {
+    res.status(400).json({
+      error: `Sandesh bahut lamba hai. Kripya ${MAX_MESSAGE_LENGTH} characters se kam mein likhein.`,
+    });
     return;
   }
 

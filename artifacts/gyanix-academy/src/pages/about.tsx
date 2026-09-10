@@ -1,10 +1,19 @@
 import { motion } from "framer-motion";
-import { CheckCircle2, Target, Award, Users, BookOpen, Trophy } from "lucide-react";
+import { Link } from "wouter";
+import { CheckCircle2, Target, Award, Users, BookOpen, Trophy, ChevronRight } from "lucide-react";
+import { Seo, organizationJsonLd, websiteJsonLd } from "@/components/seo";
 import aboutImg from "@assets/generated_images/about-classroom.jpg";
 
 export default function About() {
   return (
     <div className="w-full">
+      <Seo
+        title="About Gyanix Academy – Coaching Institute in Kaithal, Haryana"
+        description="Learn about Gyanix Academy — Kaithal's complete School · Coaching · Hostel institute founded in 2025 with a 5.0★ rating. Discover our mission, vision and why students choose us."
+        path="/about"
+        type="website"
+        jsonLd={[organizationJsonLd, websiteJsonLd]}
+      />
       {/* Header */}
       <section className="bg-primary/5 py-16 md:py-24 border-b border-primary/10">
         <div className="container mx-auto px-4 md:px-6 text-center">
@@ -63,7 +72,7 @@ export default function About() {
               viewport={{ once: true }}
               className="relative rounded-2xl overflow-hidden shadow-2xl"
             >
-              <img src={aboutImg} alt="Modern Classroom at Gyanix Academy" className="w-full h-auto" />
+              <img src={aboutImg} alt="Modern classroom interior at Gyanix Academy Kaithal" className="w-full h-auto" loading="lazy" decoding="async" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
                 <p className="text-white font-medium text-lg">State-of-the-art classrooms designed for focused learning.</p>
               </div>
@@ -104,6 +113,15 @@ export default function About() {
                 <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
               </motion.div>
             ))}
+          </div>
+
+          <div className="mt-14 flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/courses" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-bold text-white bg-primary hover:bg-primary/90 transition-colors">
+              Explore Our Courses
+            </Link>
+            <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-bold text-primary border-2 border-primary hover:bg-primary hover:text-white transition-colors">
+              Contact Us Today <ChevronRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>

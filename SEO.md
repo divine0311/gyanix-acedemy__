@@ -353,14 +353,14 @@ Custom inline SVG (a `>_`-style chevron with an orange circle) — defined direc
 ## 10. Deployment & Hosting (Replit / Vercel / Render)
 
 ### Current active hosting: **Replit**
-- `.replit` defines the dev workflow: `PORT=3000 BASE_PATH=/ npm run --prefix artifacts/gyanix-academy dev`
+- `.replit` defines the dev workflow: `PORT=5000 BASE_PATH=/ npm run --prefix artifacts/gyanix-academy dev`
 - The frontend and API are separate **artifacts**:
   - Frontend (gyanix-academy): served at `/`
   - API (api-server): served at `/api/*`
 - `.replit` uses `router = "application"` with `deploymentTarget = "autoscale"`.
 
 ### Vercel (also configured, in `vercel.json`)
-- Build: `pnpm install && PORT=3000 BASE_PATH=/ pnpm --filter @workspace/gyanix-academy run build`
+- Build: `pnpm install && PORT=5000 BASE_PATH=/ pnpm --filter @workspace/gyanix-academy run build`
 - Output directory: `artifacts/gyanix-academy/dist/public`
 - Rewrites `/api/*` to the Render-hosted API: `https://gyanix-acedemy.onrender.com/api/*`
 - SPA rewrite: all non-asset routes → `/index.html`
@@ -381,7 +381,7 @@ Custom inline SVG (a `>_`-style chevron with an orange circle) — defined direc
 pnpm --filter @workspace/api-server run dev
 
 # Terminal 2 — Frontend (Replit default port)
-PORT=3000 BASE_PATH=/ npm run --prefix artifacts/gyanix-academy dev
+PORT=5000 BASE_PATH=/ npm run --prefix artifacts/gyanix-academy dev
 # or your chosen port, e.g. 5000:
 PORT=5000 BASE_PATH=/ npm run --prefix artifacts/gyanix-academy dev
 ```

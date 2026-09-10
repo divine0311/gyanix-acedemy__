@@ -3,6 +3,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { Route, Switch, Router as WouterRouter } from 'wouter';
 import { Layout } from './components/layout';
 import { ChatBot } from './components/chatbot';
+import { Seo } from './components/seo';
 
 import Home from './pages/home';
 import About from './pages/about';
@@ -18,6 +19,12 @@ const queryClient = new QueryClient();
 function NotFound() {
   return (
     <div className="min-h-[70vh] flex flex-col items-center justify-center text-center px-4">
+      <Seo
+        title="Page Not Found – Gyanix Academy"
+        description="The page you are looking for could not be found. Visit Gyanix Academy's homepage to explore IIT-JEE, NEET and NDA coaching in Kaithal."
+        path="/404"
+        noIndex
+      />
       <h1 className="text-6xl font-extrabold text-primary mb-4">404</h1>
       <h2 className="text-2xl font-bold text-gray-900 mb-4">Page Not Found</h2>
       <p className="text-gray-600 mb-8 max-w-md">The page you are looking for doesn't exist or has been moved.</p>
