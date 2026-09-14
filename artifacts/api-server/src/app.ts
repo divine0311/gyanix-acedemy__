@@ -6,6 +6,14 @@ import { logger } from "./lib/logger";
 
 const app: Express = express();
 
+// The app sits behind a proxy (Vercel rewrites → Render), so we must trust
+// the first X-Forwarded-For hop for req.ip / rate limiting to see real users.
+const trustProxyRaw = process.env["TRUST_PROXY"] ?? "1";
+app.set(
+  "trust proxy",
+  trustProxyRaw === "true" ? true : trustProxyRaw === "false" ? false : Number(trustProxyRaw),
+);
+
 app.use(
   pinoHttp({
     logger,

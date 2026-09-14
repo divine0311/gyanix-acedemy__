@@ -3,13 +3,13 @@ import healthRouter from "./health";
 import enquiryRouter from "./enquiry";
 import chatRouter from "./chat";
 import gsetRouter from "./gset";
-import { formLimiter, chatLimiter } from "../middleware/rate-limit";
+import { enquiryLimiter, gsetLimiter, chatLimiter } from "../middleware/rate-limit";
 
 const router: IRouter = Router();
 
 router.use(healthRouter);
-router.use(formLimiter, enquiryRouter);
+router.use(enquiryLimiter, enquiryRouter);
 router.use(chatLimiter, chatRouter);
-router.use(formLimiter, gsetRouter);
+router.use(gsetLimiter, gsetRouter);
 
 export default router;

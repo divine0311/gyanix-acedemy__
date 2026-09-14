@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Send, Mic, MicOff, Volume2, VolumeX, Bot } from "lucide-react";
+import { X, Send, Mic, MicOff, Volume2, VolumeX } from "lucide-react";
 
 const RobotIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -119,6 +119,12 @@ export function ChatBot() {
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
+  const messagesRef = useRef<Message[]>(messages);
+  const openRef = useRef(open);
+
+  // Keep refs in sync with state
+  useEffect(() => { messagesRef.current = messages; }, [messages]);
+  useEffect(() => { openRef.current = open; }, [open]);
 
   // Auto-scroll
   useEffect(() => {
@@ -137,18 +143,25 @@ export function ChatBot() {
     if (!ttsEnabled || !window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
-    // Prefer Hindi voice if available, fallback to English
+    const findAndSpeak = () => {
+      const voices = window.speechSynthesis.getVoices();
+      const hiVoice = voices.find((v) => v.lang.startsWith("hi"));
+      if (hiVoice) utterance.voice = hiVoice;
+      utterance.rate = 0.95;
+      utterance.pitch = 1;
+      window.speechSynthesis.speak(utterance);
+    };
     const voices = window.speechSynthesis.getVoices();
-    const hiVoice = voices.find((v) => v.lang.startsWith("hi"));
-    if (hiVoice) utterance.voice = hiVoice;
-    utterance.rate = 0.95;
-    utterance.pitch = 1;
-    window.speechSynthesis.speak(utterance);
+    if (voices.length > 0) {
+      findAndSpeak();
+    } else {
+      window.speechSynthesis.addEventListener("voiceschanged", findAndSpeak, { once: true });
+    }
   }, [ttsEnabled]);
 
   const sendMessage = useCallback(async (text: string) => {
     const trimmed = text.trim();
-    if (!trimmed || loading) return;
+    if (!trimmed) return;
 
     const userMsg: Message = { role: "user", content: trimmed };
     setMessages((prev) => [...prev, userMsg]);
@@ -156,12 +169,20 @@ export function ChatBot() {
     setLoading(true);
 
     try {
-      const history = messages.slice(-8);
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: trimmed, history }),
-      });
+      const history = messagesRef.current.slice(-8);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 25000);
+      let res: Response;
+      try {
+        res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: trimmed, history }),
+          signal: controller.signal,
+        });
+      } finally {
+        clearTimeout(timeoutId);
+      }
 
       const data = await res.json().catch(() => ({})) as {
         reply?: string;
@@ -181,16 +202,22 @@ export function ChatBot() {
       setMessages((prev) => [...prev, botMsg]);
       speak(reply);
 
-      if (!open) setUnread((n) => n + 1);
-    } catch {
+      if (!openRef.current) setUnread((n) => n + 1);
+    } catch (err) {
+      const timedOut = err instanceof DOMException && err.name === "AbortError";
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: "Network error. Please check your connection." },
+        {
+          role: "assistant",
+          content: timedOut
+            ? "Response ko jyada time lag raha hai. Thodi der baad dobara try karein."
+            : "Network error. Please check your connection.",
+        },
       ]);
     } finally {
       setLoading(false);
     }
-  }, [loading, messages, open, speak]);
+  }, [speak]);
 
   const startListening = useCallback(() => {
     const SR = (window as any).SpeechRecognition as SpeechRecognitionConstructor | undefined ??

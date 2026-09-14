@@ -1,8 +1,24 @@
 import { Router, type IRouter } from "express";
-import nodemailer from "nodemailer";
 import { logger } from "../lib/logger";
+import { trySendEmail } from "../lib/mailer";
+import { persistSubmission } from "../lib/submissions";
 
 const router: IRouter = Router();
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MAX_NAME = 100;
+const MAX_EMAIL = 254;
+const MAX_COURSE = 100;
+const MAX_MESSAGE = 2000;
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
 
 router.post("/enquiry", async (req, res) => {
   const { name, email, course, message } = req.body as {
@@ -12,32 +28,29 @@ router.post("/enquiry", async (req, res) => {
     message?: string;
   };
 
-  if (!name || !email || !course || !message) {
+  if (!name?.trim() || !email?.trim() || !course?.trim() || !message?.trim()) {
     res.status(400).json({ error: "All fields are required." });
     return;
   }
 
-  // Always log the enquiry so it's never silently lost
-  logger.info({ name, email, course }, "New enquiry received");
+  const trimName = name.trim();
+  const trimEmail = email.trim();
+  const trimCourse = course.trim();
+  const trimMessage = message.trim();
 
-  const smtpUser = process.env["SMTP_USER"];
-  const smtpPass = process.env["SMTP_PASS"];
-  const enquiryEmail = process.env["ENQUIRY_EMAIL"] ?? smtpUser;
-
-  if (!smtpUser || !smtpPass) {
-    logger.warn(
-      "SMTP_USER or SMTP_PASS not configured — enquiry logged above, email not sent. " +
-      "Set SMTP_USER, SMTP_PASS (and optionally ENQUIRY_EMAIL) in the .env file to enable email notifications."
-    );
-    // Still return success so form UX works even before credentials are set
-    res.json({ success: true });
+  if (trimName.length > MAX_NAME || trimEmail.length > MAX_EMAIL || trimCourse.length > MAX_COURSE || trimMessage.length > MAX_MESSAGE) {
+    res.status(400).json({ error: "One or more fields exceed the maximum allowed length." });
     return;
   }
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: { user: smtpUser, pass: smtpPass },
-  });
+  if (!EMAIL_REGEX.test(trimEmail)) {
+    res.status(400).json({ error: "Please enter a valid email address." });
+    return;
+  }
+
+  // Always log the enquiry so it's never silently lost
+  logger.info({ name: trimName, email: trimEmail, course: trimCourse }, "New enquiry received");
+  persistSubmission({ type: "enquiry", name: trimName, email: trimEmail, course: trimCourse, message: trimMessage });
 
   const html = `
     <div style="font-family:sans-serif;max-width:560px;margin:0 auto;">
@@ -46,31 +59,31 @@ router.post("/enquiry", async (req, res) => {
       </h2>
       <div style="border:1px solid #e5e7eb;border-top:none;padding:24px;border-radius:0 0 8px 8px;">
         <table style="width:100%;border-collapse:collapse;">
-          <tr><td style="padding:8px 0;color:#6b7280;width:130px;">Name</td><td style="padding:8px 0;font-weight:600;">${name}</td></tr>
-          <tr><td style="padding:8px 0;color:#6b7280;">Email</td><td style="padding:8px 0;"><a href="mailto:${email}">${email}</a></td></tr>
-          <tr><td style="padding:8px 0;color:#6b7280;">Course</td><td style="padding:8px 0;">${course}</td></tr>
-          <tr><td style="padding:8px 0;color:#6b7280;vertical-align:top;">Message</td><td style="padding:8px 0;">${message.replace(/\n/g, "<br>")}</td></tr>
+          <tr><td style="padding:8px 0;color:#6b7280;width:130px;">Name</td><td style="padding:8px 0;font-weight:600;">${escapeHtml(trimName)}</td></tr>
+          <tr><td style="padding:8px 0;color:#6b7280;">Email</td><td style="padding:8px 0;"><a href="mailto:${escapeHtml(trimEmail)}">${escapeHtml(trimEmail)}</a></td></tr>
+          <tr><td style="padding:8px 0;color:#6b7280;">Course</td><td style="padding:8px 0;">${escapeHtml(trimCourse)}</td></tr>
+          <tr><td style="padding:8px 0;color:#6b7280;vertical-align:top;">Message</td><td style="padding:8px 0;">${escapeHtml(trimMessage).replace(/\n/g, "<br>")}</td></tr>
         </table>
         <p style="margin-top:20px;font-size:12px;color:#9ca3af;">Sent from Gyanix Academy website contact form.</p>
       </div>
     </div>
   `;
 
-  try {
-    await transporter.sendMail({
-      from: `"Gyanix Academy Website" <${smtpUser}>`,
-      to: enquiryEmail,
-      replyTo: email,
-      subject: `New Enquiry: ${name} — ${course}`,
-      html,
-    });
+  // Send notification email in the background so the form responds instantly.
+  // Email failure never blocks the submission — data is already logged above.
+  void trySendEmail({
+    subject: `New Enquiry: ${trimName} — ${trimCourse}`,
+    html,
+    replyTo: trimEmail,
+  }).then((sent) => {
+    if (sent) {
+      logger.info({ name: trimName, email: trimEmail, course: trimCourse }, "Enquiry email sent");
+    } else {
+      logger.warn({ name: trimName, email: trimEmail }, "Enquiry email not sent — submission still accepted");
+    }
+  });
 
-    logger.info({ name, email, course }, "Enquiry email sent");
-    res.json({ success: true });
-  } catch (err) {
-    logger.error({ err }, "Failed to send enquiry email");
-    res.status(500).json({ error: "Failed to send message. Please try again." });
-  }
+  res.json({ success: true });
 });
 
 export default router;

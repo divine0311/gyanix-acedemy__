@@ -4,6 +4,7 @@ import { Route, Switch, Router as WouterRouter } from 'wouter';
 import { Layout } from './components/layout';
 import { ChatBot } from './components/chatbot';
 import { Seo } from './components/seo';
+import { ScrollToTop } from './components/scroll-to-top';
 
 import Home from './pages/home';
 import About from './pages/about';
@@ -57,6 +58,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+        <ScrollToTop />
         <Router />
       </WouterRouter>
       <Toaster />

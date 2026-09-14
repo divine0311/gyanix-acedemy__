@@ -5,6 +5,13 @@ import { logger } from "../lib/logger";
 const router: IRouter = Router();
 
 const MAX_MESSAGE_LENGTH = 1000;
+const GROQ_TIMEOUT_MS = 30000;
+
+function wait<T = never>(ms: number, reason: string): Promise<T> {
+  return new Promise((_, reject) => {
+    setTimeout(() => reject(new Error(reason)), ms);
+  });
+}
 
 const SYSTEM_PROMPT = `You are a friendly and helpful assistant for Gyanix Academy, a premium coaching institute in Kaithal, Haryana, India. You know everything about this academy and help students, parents, and visitors with their questions.
 
@@ -183,16 +190,19 @@ router.post("/chat", async (req, res) => {
       .slice(-8) // keep last 8 exchanges to stay within context
       .filter((m) => m.role === "user" || m.role === "assistant");
 
-    const completion = await client.chat.completions.create({
-      model: "openai/gpt-oss-120b",
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        ...safeHistory,
-        { role: "user", content: message },
-      ],
-      max_tokens: 1000,
-      temperature: 0.6,
-    });
+    const completion = await Promise.race([
+      client.chat.completions.create({
+        model: "openai/gpt-oss-120b",
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          ...safeHistory,
+          { role: "user", content: message },
+        ],
+        max_tokens: 1000,
+        temperature: 0.6,
+      }),
+      wait(GROQ_TIMEOUT_MS, `Groq request timed out after ${GROQ_TIMEOUT_MS}ms`),
+    ]);
 
     const reply = completion.choices[0]?.message?.content ?? "Sorry, I could not generate a response.";
     logger.info({ message: message.slice(0, 60) }, "Chat reply sent");
