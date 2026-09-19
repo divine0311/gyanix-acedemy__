@@ -91,6 +91,8 @@ async function main() {
   const frontendEnv = {
     ...process.env,
     ...envFromDotenv(envFile, { PORT: "5000", BASE_PATH: "/" }),
+    PORT: "5000",
+    BASE_PATH: "/",
   };
   start("frontend", pnpmCmd, ["run", "dev"], {
     cwd: frontendDir,
