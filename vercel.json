@@ -1,6 +1,7 @@
 {
+  "rootDirectory": "artifacts/gyanix-academy",
   "buildCommand": "PORT=5000 BASE_PATH=/ npx --yes pnpm@12.5.1 --filter @workspace/gyanix-academy run build",
-  "outputDirectory": "artifacts/gyanix-academy/dist/public",
+  "outputDirectory": "dist/public",
   "installCommand": "npx --yes pnpm@12.5.1 install",
   "cleanUrls": true,
   "rewrites": [
