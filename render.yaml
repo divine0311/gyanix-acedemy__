@@ -1,4 +1,4 @@
-services:
+services:render.yaml
   - type: web
     name: gyanix-api
     runtime: node
