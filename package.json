@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "packageManager": "pnpm@12.5.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "build": "PORT=${PORT:-5000} BASE_PATH=${BASE_PATH:-/} npm run --prefix artifacts/gyanix-academy build",
