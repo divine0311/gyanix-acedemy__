@@ -20,6 +20,10 @@ services:render.yaml
         sync: false
       - key: ENQUIRY_EMAIL
         sync: false
+      - key: RATE_LIMIT_FORMS_MAX
+        value: "100"
+      - key: RATE_LIMIT_CHAT_MAX
+        value: "200"
       - key: RESEND_API_KEY
         sync: false
       - key: LOG_LEVEL
