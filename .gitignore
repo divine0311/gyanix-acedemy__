@@ -58,3 +58,7 @@ Thumbs.db
 
 # Local form submissions / runtime data
 data/
+
+# Local dev server runtime logs
+dev-server.log
+dev-server.err.log
